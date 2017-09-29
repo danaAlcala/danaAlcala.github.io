@@ -69,7 +69,7 @@ function initializeFont(){
 }
 function initializePlayer(){
     player = new Player();
-    player.location = new Point(8,12);
+    player.location = new Point(0,0);
     player.locationTrail = player.location;
 }
 function initializeEverything() {
