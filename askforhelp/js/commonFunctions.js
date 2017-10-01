@@ -7,6 +7,11 @@ function moveEverything() {
 }
 function updateAll() {
     moveEverything();
+    checkForInput();
+    updateTileSize();
+    updateUnitOfAltitude();
+    updateGrassHeight();
+    updateWallHeight();
     drawEverything();
     debug();
 }

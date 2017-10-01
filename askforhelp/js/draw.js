@@ -27,6 +27,15 @@ function drawIsoRhombusFilled(color, x, y, squareSize){
     canvasContext.closePath();
     canvasContext.fill();
 }
+function drawHalfTile(color, x, y, squareSize){
+    canvasContext.fillStyle = color;
+    canvasContext.beginPath();
+    canvasContext.moveTo(x + squareSize, y);
+    canvasContext.lineTo(x + 2 * squareSize, y + squareSize / 2);
+    canvasContext.lineTo(x + squareSize, y + squareSize);
+    canvasContext.closePath();
+    canvasContext.fill();
+}
 function drawIsoRhombusWire(fillColor, strokeColor, x, y, squareSize){
     canvasContext.fillStyle = fillColor;
     canvasContext.strokeStyle = strokeColor;
@@ -48,11 +57,29 @@ function drawLine(strokeColor, startX, startY, endX, endY){
     canvasContext.stroke();
 }
 function drawGrassTile(x,y){
-    drawIsoRhombusFilled(grassColor, x, y, tileSize);
+    for (var i = 0; i <= grassHeight; i++){
+        if (i < grassHeight){
+            drawIsoRhombusFilled(grassOutlineColor, x, y - i, tileSize);
+            drawHalfTile(grassColorShade2, x, y - i, tileSize);
+        }
+        else{
+            drawIsoRhombusFilled(grassColor, x, y - i, tileSize);
+        }
+        
+    }
+    drawIsoRhombusWire(grassColor, grassOutlineColor, x, y - grassHeight, tileSize);
+    drawLine(grassOutlineColor, x + tileSize, y + tileSize, x + tileSize, y - grassHeight + tileSize);
 }
 function drawWallTile(x,y){
     for (var i = 0; i <= wallHeight; i++){
-        drawIsoRhombusFilled(wallColor, x, y - i, tileSize);
+        if (i < wallHeight){
+            drawIsoRhombusFilled(wallOutlineColor, x, y - i, tileSize);
+            drawHalfTile(wallColorShade2, x, y - i, tileSize);
+        }
+        else{
+            drawIsoRhombusFilled(wallColor, x, y - i, tileSize);
+        }
+        
     }
     drawIsoRhombusWire(wallColor, wallOutlineColor, x, y - wallHeight, tileSize);
     drawLine(wallOutlineColor, x + tileSize, y + tileSize, x + tileSize, y - wallHeight + tileSize);
@@ -82,7 +109,9 @@ function drawMap(x,y){
                 drawWallTile(drawPt.x,drawPt.y);
             }
             else if(tileType == 'grass'){
+                changeGrassHeight(altitudeMap[row][column]);
                 drawGrassTile(drawPt.x,drawPt.y);
+                updateGrassHeight();
             }
             else {
                 drawEmptyTile(drawPt.x,drawPt.y);

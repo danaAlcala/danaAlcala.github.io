@@ -1,3 +1,4 @@
+var unhold = false;
 function setKeyHoldState(thisKey, setTo) {
     if (thisKey == KEY_LEFT_ARROW) {
         holdLeft = setTo;
@@ -23,6 +24,19 @@ function keyPressed(evt) {
 function keyReleased(evt) {
     setKeyHoldState(evt.keyCode, false);
 }
-function randomNumber(start, end) {
-    return Math.floor((Math.random() * end) + start);
+
+function checkForInput() {
+	if (holdUp && unHold == false) {
+		if (tileScale > 1) {
+			tileScale -= 5;
+		}		
+		unHold = true;		
+	}
+	if (holdDown & unHold == false) {
+		tileScale += 5;
+		unHold = true;		
+	}
+	if (holdUp == false && holdDown == false) {
+		unHold = false;
+	}		
 }
