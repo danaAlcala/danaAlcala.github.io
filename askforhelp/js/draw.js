@@ -12,30 +12,30 @@ function drawRect(color, x, y, width, height) {
 function drawBlock(height, color, x, y, squareSize){
     var blockHeight;
     var halfSquareSize;
-    blockHeight = height * unitOfAltitude;
+    blockHeight = height + unitOfAltitude;
     halfSquareSize = squareSize / 2;
     canvasContext.fillStyle = color;
     canvasContext.beginPath();
     canvasContext.moveTo(x, (y + halfSquareSize));
     canvasContext.lineTo(x + squareSize, y);
     canvasContext.lineTo(x + 2 * squareSize, y + halfSquareSize);
-    canvasContext.lineTo(x + 2 * squareSize, (y + halfSquareSize) + blockHeight/4);
-    canvasContext.lineTo(x + squareSize, (y + squareSize) + blockHeight/4);
-    canvasContext.lineTo(x, (y + halfSquareSize) + blockHeight/4);
+    canvasContext.lineTo(x + 2 * squareSize, (y + halfSquareSize) + blockHeight);
+    canvasContext.lineTo(x + squareSize, (y + squareSize) + blockHeight);
+    canvasContext.lineTo(x, (y + halfSquareSize) + blockHeight);
     canvasContext.closePath();
     canvasContext.fill();
 }
 function drawHalfBlock(height, color, x, y, squareSize){
     var blockHeight;
     var halfSquareSize;
-    blockHeight = height * unitOfAltitude;
+    blockHeight = height + unitOfAltitude;
     halfSquareSize = squareSize / 2;
     canvasContext.fillStyle = color;
     canvasContext.beginPath();
     canvasContext.moveTo(x + squareSize, y);
     canvasContext.lineTo(x + 2 * squareSize, y + squareSize / 2);
-    canvasContext.lineTo(x + 2 * squareSize, (y + halfSquareSize) + (blockHeight / 4));
-    canvasContext.lineTo(x + squareSize, (y + squareSize) + (blockHeight / 4));
+    canvasContext.lineTo(x + 2 * squareSize, (y + halfSquareSize) + (blockHeight));
+    canvasContext.lineTo(x + squareSize, (y + squareSize) + (blockHeight));
     canvasContext.closePath();
     canvasContext.fill();
 }
