@@ -1,21 +1,13 @@
 function initializeCanvas() {
-    // console.log('Called initializeCanvas()');  // DEBUG
-
     canvas = document.getElementById('gameCanvas'); // This grabs the canvas from the HTML for use in the script.
     canvasContext = canvas.getContext('2d'); // "The getContext() method returns an object that provides methods and properties for drawing on the canvas." from w3schools.com
     canvasBGColor = 'black';
-    
-    // console.log('initializeCanvas() complete');  // DEBUG
 }
 function initializeCanvasWidth(){
     canvasWidth = canvas.width;
 }
 function initializeFPS() {
-    // console.log('Called initializeFPS()');  // DEBUG
-
     framesPerSecond = 30;
-
-    // console.log('initializeFPS() complete');  // DEBUG
 }
 /*function initializeImages() {
     imageName.src = "./images/imageName.png";
@@ -57,18 +49,18 @@ function initializeTileMap(){
 function initializeAltitudeMap(){
     altitudeMap = [
         [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,8,6,4,2,0,0,0,0,0],
-        [0,0,0,0,0,8,6,4,4,0,0,0,0,0],
-        [0,0,0,0,0,8,6,6,6,0,0,0,0,0],
-        [0,0,0,0,0,8,8,8,8,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,1,2,3,4,5,6,7,8,9,10,11,12,0],
+        [0,2,0,0,0,0,0,0,0,0,0,0,11,0],
+        [0,3,0,0,0,0,0,0,0,0,0,0,10,0],
+        [0,4,0,0,0,0,0,0,0,0,0,0,9,0],
+        [0,5,0,0,0,8,6,4,2,0,0,0,8,0],
+        [0,6,0,0,0,8,6,4,4,0,0,0,7,0],
+        [0,7,0,0,0,8,6,6,6,0,0,0,6,0],
+        [0,8,0,0,0,8,8,8,8,0,0,0,5,0],
+        [0,9,0,0,0,0,0,0,0,0,0,0,4,0],
+        [0,10,0,0,0,0,0,0,0,0,0,0,3,0],
+        [0,11,0,0,0,0,0,0,0,0,0,0,2,0],
+        [0,12,11,10,9,8,7,6,5,4,3,2,1,0],
         [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     ]
 }

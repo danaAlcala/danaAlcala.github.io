@@ -2,21 +2,44 @@
 	canvasContext.drawImage(imageName, sheetX * IMAGE_FROM_SHEET_WIDTH, sheetY * IMAGE_FROM_SHEET_HEIGHT, IMAGE_FROM_SHEET_WIDTH, IMAGE_FROM_SHEET_HEIGHT, x, y, imageWidth * imageScaleModifier, imageHeight * imageScaleModifier);
 }*/
 function drawCanvas() {
-    // console.log('Called drawCanvas()');  // DEBUG
-
     canvasContext.fillStyle = canvasBGColor; // "fillStyle Sets or returns the color, gradient, or pattern used to fill the drawing." from w3schools.com
     canvasContext.fillRect(0, 0, canvas.width, canvas.height); // Doesn't fill an existing rectangle, but instead creates a filled rectangle.
-
-    // console.log('drawCanvas() complete');  // DEBUG
 }
 function drawRect(color, x, y, width, height) {
-    // console.log('Called drawRect()');  // DEBUG
-
     canvasContext.fillStyle = color;
     canvasContext.fillRect(x, y, width, height);
-
-    // console.log('drawRect() complete');  // DEBUG
 }
+function drawBlock(height, color, x, y, squareSize){
+    var blockHeight;
+    var halfSquareSize;
+    blockHeight = height * unitOfAltitude;
+    halfSquareSize = squareSize / 2;
+    canvasContext.fillStyle = color;
+    canvasContext.beginPath();
+    canvasContext.moveTo(x, (y + halfSquareSize));
+    canvasContext.lineTo(x + squareSize, y);
+    canvasContext.lineTo(x + 2 * squareSize, y + halfSquareSize);
+    canvasContext.lineTo(x + 2 * squareSize, (y + halfSquareSize) + blockHeight/4);
+    canvasContext.lineTo(x + squareSize, (y + squareSize) + blockHeight/4);
+    canvasContext.lineTo(x, (y + halfSquareSize) + blockHeight/4);
+    canvasContext.closePath();
+    canvasContext.fill();
+}
+function drawHalfBlock(height, color, x, y, squareSize){
+    var blockHeight;
+    var halfSquareSize;
+    blockHeight = height * unitOfAltitude;
+    halfSquareSize = squareSize / 2;
+    canvasContext.fillStyle = color;
+    canvasContext.beginPath();
+    canvasContext.moveTo(x + squareSize, y);
+    canvasContext.lineTo(x + 2 * squareSize, y + squareSize / 2);
+    canvasContext.lineTo(x + 2 * squareSize, (y + halfSquareSize) + (blockHeight / 4));
+    canvasContext.lineTo(x + squareSize, (y + squareSize) + (blockHeight / 4));
+    canvasContext.closePath();
+    canvasContext.fill();
+}
+
 function drawIsoRhombusFilled(color, x, y, squareSize){
     canvasContext.fillStyle = color;
     canvasContext.beginPath();
@@ -57,32 +80,24 @@ function drawLine(strokeColor, startX, startY, endX, endY){
     canvasContext.stroke();
 }
 function drawGrassTile(x,y){
-    for (var i = 0; i <= grassHeight; i++){
-        if (i < grassHeight){
-            drawIsoRhombusFilled(grassOutlineColor, x, y - i, tileSize);
-            drawHalfTile(grassColorShade2, x, y - i, tileSize);
-        }
-        else{
-            drawIsoRhombusFilled(grassColor, x, y - i, tileSize);
-        }
-        
+    if (grassHeight > 0){
+        drawBlock(grassHeight, grassOutlineColor, x, y - grassHeight, tileSize);
+        drawHalfBlock(grassHeight, grassColorShade2, x, y - grassHeight, tileSize);
+        drawIsoRhombusFilled(grassColor, x, y - grassHeight, tileSize);
     }
-    drawIsoRhombusWire(grassColor, grassOutlineColor, x, y - grassHeight, tileSize);
-    drawLine(grassOutlineColor, x + tileSize, y + tileSize, x + tileSize, y - grassHeight + tileSize);
+    else{
+        drawIsoRhombusFilled(grassColor, x, y, tileSize);
+    }
 }
 function drawWallTile(x,y){
-    for (var i = 0; i <= wallHeight; i++){
-        if (i < wallHeight){
-            drawIsoRhombusFilled(wallOutlineColor, x, y - i, tileSize);
-            drawHalfTile(wallColorShade2, x, y - i, tileSize);
-        }
-        else{
-            drawIsoRhombusFilled(wallColor, x, y - i, tileSize);
-        }
-        
+    if (wallHeight > 0){
+        drawBlock(wallHeight, wallOutlineColor, x, y - wallHeight, tileSize);
+        drawHalfBlock(wallHeight, wallColorShade2, x, y - wallHeight, tileSize);
+        drawIsoRhombusFilled(wallColor, x, y - wallHeight, tileSize);
     }
-    drawIsoRhombusWire(wallColor, wallOutlineColor, x, y - wallHeight, tileSize);
-    drawLine(wallOutlineColor, x + tileSize, y + tileSize, x + tileSize, y - wallHeight + tileSize);
+    else{
+        drawIsoRhombusFilled(wallColor, x, y, tileSize);
+    }
 }
 function drawEmptyTile(x,y){
     drawIsoRhombusWire('black','white',x,y,tileSize);
@@ -106,7 +121,10 @@ function drawMap(x,y){
             tileType = tileMap[row][column];
             var drawPt = twoDToIso({x: isoX, y: isoY});
             if (tileType == 'wall'){
+                changeWallHeight(altitudeMap[row][column]);
                 drawWallTile(drawPt.x,drawPt.y);
+                updateWallHeight();
+                //drawWallTile(drawPt.x,drawPt.y);
             }
             else if(tileType == 'grass'){
                 changeGrassHeight(altitudeMap[row][column]);
@@ -132,16 +150,10 @@ function drawEverything() {
     drawCanvas();
     drawMap(tileMapX, tileMapY);
     drawMapSizeText(mapSizeTextLineHeight);
-    //drawGrassTile(0,100);
-    //drawWallTile(100,100);
 }
 function drawCircle(color, x, y, radius) {
-    // console.log('Called drawCircle()');  // DEBUG
-
     canvasContext.fillStyle = color;
     canvasContext.beginPath();  // Starts the fill path.
     canvasContext.arc(x, y, radius, 0, Math.PI * 2, true);
     canvasContext.fill();
-
-    // console.log('drawCircle() complete');  // DEBUG
 }

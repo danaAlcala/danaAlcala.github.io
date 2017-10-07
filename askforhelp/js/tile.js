@@ -1,5 +1,5 @@
 var tileSize;
-var tileScale = 27;
+var tileScale = 25;
 var wallHeight;
 var grassHeight;
 var tileMap = [];
@@ -13,8 +13,8 @@ var unitOfAltitude;
 var altitudeMap = [];
 
 function updateTileSize(){
-    if (tileScale < 1){
-        tileScale = 1;
+    if (tileScale < 5){
+        tileScale = 5;
     }
     else if (tileScale > 150){
         tileScale = 150;
@@ -31,7 +31,10 @@ function changeGrassHeight(altitude){
     grassHeight = unitOfAltitude * altitude;
 }
 function updateWallHeight(){
-    wallHeight = unitOfAltitude * 10;
+    wallHeight = unitOfAltitude * 2;
+}
+function changeWallHeight(altitude){
+    wallHeight = unitOfAltitude * altitude;
 }
 function countOuterTiles(){ //assumes that the playfield is enclosed in an unbroken, one-unit-thick wall
     var tileCount = 0;

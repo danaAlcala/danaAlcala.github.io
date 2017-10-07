@@ -28,12 +28,14 @@ function keyReleased(evt) {
 function checkForInput() {
 	if (holdUp && unHold == false) {
 		if (tileScale > 1) {
-			tileScale -= 5;
+            tileScale -= 5;
+            console.log("tileScale:" + tileScale);
 		}		
 		unHold = true;		
 	}
 	if (holdDown & unHold == false) {
-		tileScale += 5;
+        tileScale += 5;
+        console.log("tileScale:" + tileScale);
 		unHold = true;		
 	}
 	if (holdUp == false && holdDown == false) {
