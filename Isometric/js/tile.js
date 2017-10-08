@@ -1,5 +1,5 @@
 var tileSize;
-var tileScale = 25;
+var tileScale = 30;
 var wallHeight;
 var grassHeight;
 var tileMap = [];
@@ -46,4 +46,10 @@ function countOuterTiles(){ //assumes that the playfield is enclosed in an unbro
             }
         }
     }
+}
+function twoDToIso(pt){
+    var tempPt = {x:0,y:0};
+    tempPt.x = pt.x - pt.y;
+    tempPt.y = (pt.x + pt.y) / 2;
+    return tempPt;
 }

@@ -102,12 +102,6 @@ function drawWallTile(x,y){
 function drawEmptyTile(x,y){
     drawIsoRhombusWire('black','white',x,y,tileSize);
 }
-function twoDToIso(pt){
-    var tempPt = {x:0,y:0};
-    tempPt.x = pt.x - pt.y;
-    tempPt.y = (pt.x + pt.y) / 2;
-    return tempPt;
-}
 function drawMap(x,y){
     var isoX;
     var isoY;
@@ -138,6 +132,46 @@ function drawMap(x,y){
     }
     canvasContext.restore();
 }
+function drawLevelEditorOutline(x, y, squareSize){
+    canvasContext.fillStyle = levelEditorOutlineColor;
+    canvasContext.beginPath();
+    canvasContext.moveTo(x, y + squareSize / 2);
+    canvasContext.lineTo(x + squareSize, y);
+    canvasContext.lineTo(x + 2 * squareSize, y + squareSize / 2);
+    canvasContext.lineTo((x + 2 * squareSize) - levelEditorOutlineThickness, (y + squareSize / 2)) + levelEditorOutlineThickness;
+    canvasContext.lineTo(x + squareSize, y + levelEditorOutlineThickness/2);
+    canvasContext.lineTo(x + levelEditorOutlineThickness, y + squareSize / 2);
+    canvasContext.closePath();
+    canvasContext.fill();
+    canvasContext.beginPath();
+    canvasContext.moveTo(x, y + squareSize / 2);
+    canvasContext.lineTo(x + squareSize, y + squareSize);
+    canvasContext.lineTo(x + squareSize * 2, y + squareSize / 2);
+    canvasContext.lineTo(x + squareSize * 2 - levelEditorOutlineThickness, y + squareSize / 2);
+    canvasContext.lineTo(x + squareSize, y + squareSize - levelEditorOutlineThickness/2);
+    canvasContext.lineTo(x + levelEditorOutlineThickness, y + squareSize / 2);
+    canvasContext.closePath();
+    canvasContext.fill();
+}
+function drawLevelEditor(x,y){
+    var isoX;
+    var isoY;
+    canvasContext.save();
+    canvasContext.translate(x,y);
+    for (var row = 0; row < levelEditorMap.length; row ++){
+        for (var column = 0; column < levelEditorMap[row].length; column ++){
+            isoX = row * (tileSize - (tileSize / 32));
+            isoY = column * (tileSize -(tileSize / 32));
+            var drawPt = twoDToIso({x: isoX, y: isoY});
+            if (levelEditorMap[row][column] == 1){
+                drawLevelEditorOutline(drawPt.x,drawPt.y, tileSize);
+                levelEditorTileX = column;
+                levelEditorTileY = row;
+            }
+        }
+    }
+    canvasContext.restore();
+}
 function drawText(color, text, x, y) {
     canvasContext.fillStyle = color;
     canvasContext.fillText(text, x, y);
@@ -150,6 +184,9 @@ function drawEverything() {
     drawCanvas();
     drawMap(tileMapX, tileMapY);
     drawMapSizeText(mapSizeTextLineHeight);
+    if (levelEditorActive){
+        drawLevelEditor(tileMapX, tileMapY);
+    }
 }
 function drawCircle(color, x, y, radius) {
     canvasContext.fillStyle = color;

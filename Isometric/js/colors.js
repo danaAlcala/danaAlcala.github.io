@@ -4,3 +4,4 @@ var grassOutlineColor = '#693';
 var wallColor = '#963';
 var wallColorShade2 = '#933';
 var wallOutlineColor = '#633';
+var levelEditorOutlineColor = 'yellow';

@@ -13,6 +13,8 @@ var holdLeft = false;
 var holdRight = false;
 var holdUp = false;
 var holdDown = false;
+var holdL = false;
+var holdW = false;
 var unHold = false;
 // Keyboard constants
 const KEY_LEFT_ARROW = 37;
@@ -20,3 +22,5 @@ const KEY_UP_ARROW = 38;
 const KEY_RIGHT_ARROW = 39;
 const KEY_DOWN_ARROW = 40;
 const KEY_SPACE = 32;
+const KEY_L = 76;
+const KEY_W = 87;

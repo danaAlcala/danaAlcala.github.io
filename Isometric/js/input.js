@@ -12,6 +12,12 @@ function setKeyHoldState(thisKey, setTo) {
     if (thisKey == KEY_DOWN_ARROW) {
         holdDown = setTo;
     }
+    if (thisKey == KEY_L) {
+        holdL = setTo;
+    }
+    if (thisKey == KEY_W){
+        holdW = setTo;
+    }
 }
 function initInput() {
     document.addEventListener("keydown", keyPressed);
@@ -27,18 +33,46 @@ function keyReleased(evt) {
 
 function checkForInput() {
 	if (holdUp && unHold == false) {
-		if (tileScale > 1) {
-            tileScale -= 5;
-            console.log("tileScale:" + tileScale);
-		}		
+		if (!levelEditorActive){
+            if (tileScale > 1) {
+                tileScale -= 5;
+                console.log("tileScale:" + tileScale);
+            } 	
+        }
+        else{
+            moveLevelEditorTileUp();	
+        }
+        unHold = true;
+    }
+    else if(holdW && unhold == false){
+        if (!levelEditorActive){
+            if (tileScale > 1) {
+                tileScale -= 5;
+                console.log("tileScale:" + tileScale);
+            } 	
+        }
+        else{
+            moveLevelEditorTileUp();	
+        }
+        unHold = true;
+    }
+	if (holdDown && unHold == false) {
+        if (!levelEditorActive){
+            if (tileScale < 150){
+                tileScale += 5;
+                console.log("tileScale:" + tileScale);
+            }
+        }
+        else{
+            moveLevelEditorTileDown();
+        }
+		unHold = true;		
+    }
+    if (holdL && unHold == false) {
+        toggleLevelEditor();
 		unHold = true;		
 	}
-	if (holdDown & unHold == false) {
-        tileScale += 5;
-        console.log("tileScale:" + tileScale);
-		unHold = true;		
-	}
-	if (holdUp == false && holdDown == false) {
+	if (holdUp == false && holdDown == false && holdL == false) {
 		unHold = false;
 	}		
 }
