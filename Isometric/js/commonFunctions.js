@@ -25,5 +25,5 @@ function stringHasSpecialCharacters(string){
 }
 
 function stringHasAlphabeticalCharacters(string){
-    string.match(/[a-z]/i);
+    return /[a-z]/i.test(string);
 }
