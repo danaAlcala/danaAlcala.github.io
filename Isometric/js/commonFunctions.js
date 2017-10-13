@@ -19,3 +19,11 @@ function updateAll() {
 function setFont(size, font) {
     canvasContext.font = size + "px " + font;
 }
+
+function stringHasSpecialCharacters(string){
+    return /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?.]/g.test(string); // regular expression returns boolean
+}
+
+function stringHasAlphabeticalCharacters(string){
+    string.match(/[a-z]/i);
+}
