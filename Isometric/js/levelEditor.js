@@ -102,7 +102,7 @@ function promptForHeight(){
     if (height != null){
         if (stringHasAlphabeticalCharacters(height) || stringHasSpecialCharacters(height)) { // if the string contains alphabetical or special characters
             alert('You entered ' + height + ".  Please only enter 0 or a positive integer in pure numerical form.");
-            promptForHeight();
+            return promptForHeight();
         }
         else if (height == ""){
             alert('You didn\'t enter anything.  The height will default to 0.');
