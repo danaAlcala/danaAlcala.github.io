@@ -12,6 +12,7 @@ function updateAll() {
     updateUnitOfAltitude();
     updateGrassHeight();
     updateWallHeight();
+    updateCamMovementSpeed();
     drawEverything();
     debug();
 }

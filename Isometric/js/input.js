@@ -32,6 +32,22 @@ function setKeyHoldState(thisKey, setTo) {
             break;
         case KEY_2: hold2 = setTo;
             break;
+        case KEY_U: holdU = setTo;
+            break;
+        case KEY_J: holdJ = setTo;
+            break;
+        case KEY_H: holdH = setTo;
+            break;
+        case KEY_K: holdK = setTo;
+            break;
+        case KEY_Y: holdY = setTo;
+            break;
+        case KEY_I: holdI = setTo;
+            break;
+        case KEY_N: holdN = setTo;
+            break;
+        case KEY_M: holdM = setTo;
+            break;
         default: break;
     }
 }
@@ -57,7 +73,7 @@ function checkForInput() {
             } 	
         }
         else{
-            moveLevelEditorTileUp();	
+            moveLevelEditorTile('up');	
         }
         unHold = true;
     }
@@ -69,7 +85,7 @@ function checkForInput() {
             }
         }
         else{
-            moveLevelEditorTileDown();
+            moveLevelEditorTile('down');
         }
 		unHold = true;		
     }
@@ -78,7 +94,7 @@ function checkForInput() {
             tileMapX -= tileSize;
         }
         else{
-            moveLevelEditorTileLeft()
+            moveLevelEditorTile('left')
         }
         unHold = true;
     }
@@ -87,31 +103,31 @@ function checkForInput() {
             tileMapX += tileSize;
         }
         else{
-            moveLevelEditorTileRight()
+            moveLevelEditorTile('right')
         }
         unHold = true;
     }
     if (holdQ && !unHold){
         if (levelEditorActive){
-            moveLevelEditorTileUpLeft();
+            moveLevelEditorTile('upLeft');
         }
         unHold = true;
     }
     if (holdE && !unHold){
         if (levelEditorActive){
-            moveLevelEditorTileUpRight();
+            moveLevelEditorTile('upRight');
         }
         unHold = true;
     }
     if (holdZ && !unHold){
         if (levelEditorActive){
-            moveLevelEditorTileDownLeft();
+            moveLevelEditorTile('downLeft');
         }
         unHold = true;
     }
     if (holdX && !unHold){
         if (levelEditorActive){
-            moveLevelEditorTileDownRight();
+            moveLevelEditorTile('downRight');
         }
         unHold = true;
     }
@@ -146,7 +162,52 @@ function checkForInput() {
         toggleLevelEditor();
 		unHold = true;		
     }
-	if (!holdUp && !holdDown && !holdL && !holdW && !holdS && !holdLeft && !holdA && !holdRight && !holdD && !holdQ && !holdE && !holdZ && !holdX && !hold0 && !hold1 && !hold2) {
+    // Camera Movement
+    if ((holdH) && unHold == false) {
+        if (!levelEditorActive){
+            tileMapX -= camMovementSpeed;
+        }
+    }
+    if ((holdK) && unHold == false) {
+        if (!levelEditorActive){
+            tileMapX += camMovementSpeed;
+        }
+    }
+    if ((holdU) && unHold == false) {
+        if (!levelEditorActive){
+            tileMapY -= camMovementSpeed;
+        }
+    }
+    if ((holdJ) && unHold == false) {
+        if (!levelEditorActive){
+            tileMapY += camMovementSpeed;
+        }
+    }
+    if ((holdY) && unHold == false) {
+        if (!levelEditorActive){
+            tileMapX -= camMovementSpeed;
+            tileMapY -= camMovementSpeed;
+        }
+    }
+    if ((holdI) && unHold == false) {
+        if (!levelEditorActive){
+            tileMapX += camMovementSpeed;
+            tileMapY -= camMovementSpeed;
+        }
+    }
+    if ((holdN) && unHold == false) {
+        if (!levelEditorActive){
+            tileMapX -= camMovementSpeed;
+            tileMapY += camMovementSpeed;
+        }
+    }
+    if ((holdM) && unHold == false) {
+        if (!levelEditorActive){
+            tileMapX += camMovementSpeed;
+            tileMapY += camMovementSpeed;
+        }
+    }
+	if (!holdUp && !holdDown && !holdL && !holdW && !holdS && !holdLeft && !holdA && !holdRight && !holdD && !holdQ && !holdE && !holdZ && !holdX && !hold0 && !hold1 && !hold2 && !holdU && !holdJ && !holdH && !holdK && !holdY && !holdI && !holdN && !holdM) {
 		unHold = false;
 	}		
 }

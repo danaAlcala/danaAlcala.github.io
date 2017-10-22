@@ -122,6 +122,9 @@ function initializePlayer(){
 function initializeLevelEditorOutlineThickness(){
     levelEditorOutlineThickness = tileSize / 4;
 }
+function initializeCamMovementSpeed(){
+    updateCamMovementSpeed();
+}
 
 function initializeEverything() {
     initializeCanvas();

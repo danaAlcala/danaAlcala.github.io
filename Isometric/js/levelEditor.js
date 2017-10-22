@@ -15,86 +15,68 @@ function toggleLevelEditor(){
         console.log('The level editor is now active.')
     }
 }
-function moveLevelEditorTileUp(){
-    if (levelEditorTileY > 0 && levelEditorTileX > 0){
-        var newY = levelEditorTileY - 1;
-        var newX = levelEditorTileX - 1;
-        levelEditorMap[levelEditorTileY][levelEditorTileX] = 0;
-        levelEditorMap[newY][newX] = 1;
-        levelEditorTileY = newY;
-        levelEditorTileX = newX;
+function moveLevelEditorTile(direction){
+    var newY = 0;
+    var newX = 0;
+    var MAX_Y_INDEX = tileMapHeight - 1;
+    var MAX_X_INDEX = tileMapWidth - 1;
+    switch (direction){
+        case "up":
+            if (levelEditorTileY > 0 && levelEditorTileX > 0){
+                newY = levelEditorTileY - 1;
+                newX = levelEditorTileX - 1;
+            }
+            break;
+        case "down":
+            if (levelEditorTileY < MAX_Y_INDEX && levelEditorTileX < MAX_X_INDEX){
+                newY = levelEditorTileY + 1;
+                newX = levelEditorTileX + 1;
+            }
+            break;
+        case "left":
+            if (levelEditorTileY > 0 && levelEditorTileX < MAX_X_INDEX){
+                newY = levelEditorTileY - 1;
+                newX = levelEditorTileX + 1;
+            }
+            break;
+        case "right":
+            if (levelEditorTileY < MAX_Y_INDEX && levelEditorTileX > 0){
+                newY = levelEditorTileY + 1;
+                newX = levelEditorTileX - 1;
+            }
+            break;
+        case "upLeft":
+            if (levelEditorTileY > 0){
+                newY = levelEditorTileY - 1;
+                newX = levelEditorTileX;
+            }
+            break;
+        case "upRight":
+            if (levelEditorTileX > 0){
+                newY = levelEditorTileY;
+                newX = levelEditorTileX - 1;
+            }
+            break;
+        case "downLeft":
+            if (levelEditorTileX < MAX_X_INDEX){
+                newY = levelEditorTileY;
+                newX = levelEditorTileX + 1;
+            }
+            break;
+        case "downRight":
+            if (levelEditorTileY < MAX_Y_INDEX){
+                newY = levelEditorTileY + 1;
+                newX = levelEditorTileX;
+            }
+            break;
+        default: break;
     }
+    levelEditorMap[levelEditorTileY][levelEditorTileX] = 0;
+    levelEditorMap[newY][newX] = 1;
+    levelEditorTileY = newY;
+    levelEditorTileX = newX;
 }
-function moveLevelEditorTileDown(){
-    if (levelEditorTileY < 13 && levelEditorTileX < 13){
-        var newY = levelEditorTileY + 1;
-        var newX = levelEditorTileX + 1;
-        levelEditorMap[levelEditorTileY][levelEditorTileX] = 0;
-        levelEditorMap[newY][newX] = 1;
-        levelEditorTileY = newY;
-        levelEditorTileX = newX;
-    }
-}
-function moveLevelEditorTileLeft(){
-    if (levelEditorTileY > 0 && levelEditorTileX < 13){
-        var newY = levelEditorTileY - 1;
-        var newX = levelEditorTileX + 1;
-        levelEditorMap[levelEditorTileY][levelEditorTileX] = 0;
-        levelEditorMap[newY][newX] = 1;
-        levelEditorTileY = newY;
-        levelEditorTileX = newX;
-    }
-}
-function moveLevelEditorTileRight(){
-    if (levelEditorTileY < 13 && levelEditorTileX > 0){
-        var newY = levelEditorTileY + 1;
-        var newX = levelEditorTileX - 1;
-        levelEditorMap[levelEditorTileY][levelEditorTileX] = 0;
-        levelEditorMap[newY][newX] = 1;
-        levelEditorTileY = newY;
-        levelEditorTileX = newX;
-    }
-}
-function moveLevelEditorTileUpLeft(){
-    if (levelEditorTileY > 0){
-        var newY = levelEditorTileY - 1;
-        var newX = levelEditorTileX;
-        levelEditorMap[levelEditorTileY][levelEditorTileX] = 0;
-        levelEditorMap[newY][newX] = 1;
-        levelEditorTileY = newY;
-        levelEditorTileX = newX;
-    }
-}
-function moveLevelEditorTileUpRight(){
-    if (levelEditorTileX > 0){
-        var newY = levelEditorTileY;
-        var newX = levelEditorTileX - 1;
-        levelEditorMap[levelEditorTileY][levelEditorTileX] = 0;
-        levelEditorMap[newY][newX] = 1;
-        levelEditorTileY = newY;
-        levelEditorTileX = newX;
-    }
-}
-function moveLevelEditorTileDownLeft(){
-    if (levelEditorTileX < 13){
-        var newY = levelEditorTileY;
-        var newX = levelEditorTileX + 1;
-        levelEditorMap[levelEditorTileY][levelEditorTileX] = 0;
-        levelEditorMap[newY][newX] = 1;
-        levelEditorTileY = newY;
-        levelEditorTileX = newX;
-    }
-}
-function moveLevelEditorTileDownRight(){
-    if (levelEditorTileY < 13){
-        var newY = levelEditorTileY + 1;
-        var newX = levelEditorTileX;
-        levelEditorMap[levelEditorTileY][levelEditorTileX] = 0;
-        levelEditorMap[newY][newX] = 1;
-        levelEditorTileY = newY;
-        levelEditorTileX = newX;
-    }
-}
+
 function promptForHeight(){
     var height;
     var intHeight;
