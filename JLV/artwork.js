@@ -1,5 +1,11 @@
 const ARTWORK = [
   {
+    "Name": "Kobe Bryant",
+    "Link": "https://www.juungle.net/#/assets/f9fbfd3678968e732d9e15172bfba48e6cccc34be012df7f82b18276240a0154",
+    "Image": "webKobeBryant",
+    "Action": "Purchase with Bitcoin Cash"
+  },
+  {
     "Name": "Gogo",
     "Link": "https://www.juungle.net/#/assets/7367ce208fd36ad3156f84c94a7367a34e3f877a3a09533f39876d5758b2edd5",
     "Image": "webGogo",
