@@ -124,5 +124,41 @@ const ARTWORK = [
     "Link": "https://www.juungle.net/#/assets/703cd2578f79d5b19d220b2ceee4901ce7881e893147db04029776fae54004c4",
     "Image": "webCaptain_Koons",
     "Action": "Purchase with Bitcoin Cash"
+  },
+  {
+    "Name": "A Clockwork Orange",
+    "Link": "https://www.juungle.net/#/assets/7877281662eb7af4010ccbb6eefc12a02f9c6ad54972472b567eb96a3dbc8df8",
+    "Image": "webaclockworkorange",
+    "Action": "Purchase with Bitcoin Cash"
+  },
+  {
+    "Name": "Carrie Fisher - Leia",
+    "Link": "https://www.juungle.net/#/assets/8aa066ab8dce7bcdb4e07f0d3b1f66a6bd940fe66e11dad2739122e61a592332",
+    "Image": "webcarriefisherleia",
+    "Action": "Purchase with Bitcoin Cash"
+  },
+  {
+    "Name": "Cobra Kai",
+    "Link": "https://www.juungle.net/#/assets/e1096050c6a26ee4eba1abb31e2b3d52b87465ca5bc2018a32ed434863cd879e",
+    "Image": "webcobrakai",
+    "Action": "Purchase with Bitcoin Cash"
+  },
+  {
+    "Name": "nWo",
+    "Link": "https://www.juungle.net/#/assets/88817fd7356d56421fc99d174d062fdae174af3c89a120e9095ff3833c749a8c",
+    "Image": "webnwo",
+    "Action": "Purchase with Bitcoin Cash"
+  },
+  {
+    "Name": "Sho'nuff",
+    "Link": "https://www.juungle.net/#/assets/c9e3ff78ce17c9693ee176832922bafc63926b1e93715fba8ac7dd7dbe43fc71",
+    "Image": "webshonuff",
+    "Action": "Purchase with Bitcoin Cash"
+  },
+  {
+    "Name": "The Comedian",
+    "Link": "https://www.juungle.net/#/assets/963cfeb2db732c65867a181d4ac3ec1735669eaa8460a5dc8374936ff8803690",
+    "Image": "webthecomedian",
+    "Action": "Purchase with Bitcoin Cash"
   }
 ]
